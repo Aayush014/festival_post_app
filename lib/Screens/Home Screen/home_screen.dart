@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import '../../Utils/global.dart';
 import 'components.dart';
 
@@ -40,9 +41,22 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         centerTitle: true,
         actions: [
-          const Icon(
-            Icons.support_agent_rounded,
-            size: 40,
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                showModalBottomSheet(context: context,
+                  barrierColor: Colors.black54,
+                  enableDrag: true,
+                  showDragHandle: true,
+                  builder: (context) {
+                    return Center(child: Container(height: 800,));
+                  },);
+              });
+            },
+            child: const Icon(
+              Icons.support_agent_rounded,
+              size: 40,
+            ),
           ),
           const SizedBox(
             width: 10,
@@ -55,15 +69,15 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             icon: (click)
                 ? const Icon(
-                    Icons.format_list_bulleted,
-                    color: Colors.black,
-                    size: 35,
-                  )
+              Icons.format_list_bulleted,
+              color: Colors.black,
+              size: 35,
+            )
                 : const Icon(
-                    Icons.apps,
-                    color: Colors.black,
-                    size: 35,
-                  ),
+              Icons.apps,
+              color: Colors.black,
+              size: 35,
+            ),
           ),
           const SizedBox(
             width: 10,
@@ -75,7 +89,11 @@ class _HomeScreenState extends State<HomeScreen> {
           size: 50,
         ),
         shape: const Border(
-            bottom: BorderSide(color: Color(0xff072C7F), width: 2.5)),
+          bottom: BorderSide(
+            color: Color(0xff072C7F),
+            width: 2.5,
+          ),
+        ),
       ),
       body: Center(
         child: Padding(
@@ -95,36 +113,40 @@ class _HomeScreenState extends State<HomeScreen> {
     return Expanded(
       child: (click)
           ? GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: 7 / 8,
-                crossAxisCount: 2,
-              ),
-              itemCount: 9,
-              itemBuilder: (context, index) => GestureDetector(
-                onTap: () {
-                  setState(() {
-                    imgIndex = index;
-                    Navigator.of(context).pushNamed('poster');
-                  });
-                },
-                child: gridViewBox(fest[0]['img'][index][0],fest[0]['name'][index]),
-              ),
-            )
-          : ListView.builder(
-              itemCount: 9,
-              itemBuilder: (context, index) => GestureDetector(
-                onTap: () {
-                  setState(() {
-                    imgIndex = index;
-                    Navigator.of(context).pushNamed('poster');
-                  });
-                },
-                child: listViewBox(fest[0]['img'][index][0],fest[0]['name'][index]),
-              ),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio: 7 / 8,
+          crossAxisCount: 2,
+        ),
+        itemCount: 9,
+        itemBuilder: (context, index) =>
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  imgIndex = index;
+                  Navigator.of(context).pushNamed('poster');
+                });
+              },
+              child: gridViewBox(
+                  fest[0]['img'][index][0], fest[0]['name'][index]),
             ),
+      )
+          : ListView.builder(
+        itemCount: 9,
+        itemBuilder: (context, index) =>
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  imgIndex = index;
+                  Navigator.of(context).pushNamed('poster');
+                });
+              },
+              child: listViewBox(
+                  fest[0]['img'][index][0], fest[0]['name'][index]),
+            ),
+      ),
     );
   }
 }
 
 bool click = false;
-int imgIndex =0;
+int imgIndex = 0;

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_widgets.dart';
+
 import '../../Utils/global.dart';
 import '../Home Screen/home_screen.dart';
 import '../Poster Screen/poster_screen.dart';
@@ -44,22 +45,65 @@ class _ShareScreenState extends State<ShareScreen> {
           padding: const EdgeInsets.only(top: 25),
           child: Column(
             children: [
-              Container(
-                height: 380,
-                width: 380,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.black26, spreadRadius: 0.1, blurRadius: 10)
-                  ],
-                  color: Colors.grey,
-                  image: DecorationImage(
-                    image: AssetImage(
-                      fest[0]['img'][imgIndex][postIndex],
+              RepaintBoundary(
+                key: imgKey,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    Container(
+                      height: 380,
+                      width: 380,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black26,
+                              spreadRadius: 0.1,
+                              blurRadius: 10)
+                        ],
+                        color: Colors.grey,
+                        image: DecorationImage(
+                          image: AssetImage(
+                            fest[0]['img'][imgIndex][postIndex],
+                          ),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
                     ),
-                    fit: BoxFit.fill,
-                  ),
+                    Column(
+                      children: [
+                        Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              width: 380,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                  color: const Color(0xff2F6790),
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(CupertinoIcons.phone_circle),
+                                      SizedBox(width: 10,),
+                                      Text("9879004689"),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(CupertinoIcons.mail),
+                                      SizedBox(width: 10,),
+                                      Text("aayushpatel1411@gmail.com"),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            )),
+                        const SizedBox(height: 0.5,)
+                      ],
+                    )
+                  ],
                 ),
               ),
               Padding(
@@ -72,7 +116,12 @@ class _ShareScreenState extends State<ShareScreen> {
                         children: [
                           GestureDetector(
                             onTap: () {
-
+                              ShareFilesAndScreenshotWidgets().shareScreenshot(
+                                  imgKey,
+                                  1500,
+                                  "Post",
+                                  "Festival Post.png",
+                                  "image/png");
                             },
                             child: shareBox(
                               const Icon(
@@ -82,24 +131,30 @@ class _ShareScreenState extends State<ShareScreen> {
                               'Share',
                             ),
                           ),
-                          shareBox(
-                            const Icon(
-                              Icons.file_download_outlined,
-                              size: 30,
+                          GestureDetector(
+                            onTap: () {},
+                            child: shareBox(
+                              const Icon(
+                                Icons.file_download_outlined,
+                                size: 30,
+                              ),
+                              'Download',
                             ),
-                            'Download',
                           ),
                         ],
                       ),
-                      bigBox(
-                          const Icon(
-                            CupertinoIcons.home,
-                          ),
-                          const Text(
-                            'Go to Home Screen',
-                            style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.bold),
-                          )),
+                      GestureDetector(
+                        onTap: () => Navigator.of(context).pushReplacementNamed('home'),
+                        child: bigBox(
+                            const Icon(
+                              CupertinoIcons.home,
+                            ),
+                            const Text(
+                              'Go to Home Screen',
+                              style: TextStyle(
+                                  fontSize: 22, fontWeight: FontWeight.bold),
+                            )),
+                      ),
                       GestureDetector(
                           onTap: () =>
                               Navigator.of(context).push(MaterialPageRoute(
@@ -165,4 +220,5 @@ Widget shareBox(Icon i1, String s1) {
     ),
   );
 }
+
 GlobalKey imgKey = GlobalKey();

@@ -9,7 +9,7 @@ Widget saleBox() {
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: PageView(
-        allowImplicitScrolling: true,
+        allowImplicitScrolling: false,
         scrollBehavior: const CupertinoScrollBehavior(),
         physics: const BouncingScrollPhysics(),
         children: [
@@ -17,19 +17,25 @@ Widget saleBox() {
             height: 200,
             width: 380,
             decoration: BoxDecoration(
-                color: Colors.red, borderRadius: BorderRadius.circular(20)),
+                image: const DecorationImage(
+                    image: AssetImage('Assets/Img/s3.jpg'), fit: BoxFit.fill),
+                borderRadius: BorderRadius.circular(20)),
           ),
           Container(
             height: 200,
             width: 380,
             decoration: BoxDecoration(
-                color: Colors.green, borderRadius: BorderRadius.circular(20)),
+                image: const DecorationImage(
+                    image: AssetImage('Assets/Img/s1.jpg'), fit: BoxFit.fill),
+                borderRadius: BorderRadius.circular(20)),
           ),
           Container(
             height: 200,
             width: 380,
             decoration: BoxDecoration(
-                color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+                image: const DecorationImage(
+                    image: AssetImage('Assets/Img/s2.jpg'), fit: BoxFit.fill),
+                borderRadius: BorderRadius.circular(20)),
           ),
         ],
       ),
@@ -41,21 +47,30 @@ Widget listViewBox(String i1, String t1) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
-      color: Colors.grey,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            const BoxShadow(
+                color: Colors.black26, blurRadius: 10, spreadRadius: 1)
+          ]),
       height: 100,
       child: Row(
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 10, bottom: 10),
-            child: SizedBox(
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  image:
+                      DecorationImage(image: AssetImage(i1), fit: BoxFit.fill),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    const BoxShadow(
+                        color: Colors.black26, blurRadius: 10, spreadRadius: 1)
+                  ]),
               height: 75,
               width: 75,
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(
-                    i1,
-                    fit: BoxFit.fill,
-                  )),
             ),
           ),
           const Spacer(),
@@ -63,6 +78,7 @@ Widget listViewBox(String i1, String t1) {
             t1,
             style: const TextStyle(
               fontSize: 30,
+              color: Color(0xff2F6790),
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -81,23 +97,39 @@ Widget gridViewBox(String i1, String t1) {
       width: 200,
       height: 200,
       decoration: BoxDecoration(
-          color: Colors.grey, borderRadius: BorderRadius.circular(16)),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            const BoxShadow(
+                color: Colors.black26, blurRadius: 10, spreadRadius: 1)
+          ]),
       child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 16),
-            child: SizedBox(
+            child: Container(
               height: 150,
               width: 150,
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(
-                    i1,
-                    fit: BoxFit.fill,
-                  )),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  image:
+                      DecorationImage(image: AssetImage(i1), fit: BoxFit.fill),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    const BoxShadow(
+                        color: Colors.black26, blurRadius: 10, spreadRadius: 1)
+                  ]),
             ),
           ),
-          Text(t1),
+          Spacer(),
+          Text(
+            t1,
+            style: TextStyle(
+              color: Color(0xff2F6790),
+              fontSize: 20,fontWeight: FontWeight.bold
+            ),
+          ),
+          Spacer(),
         ],
       ),
     ),
