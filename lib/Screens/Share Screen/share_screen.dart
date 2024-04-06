@@ -75,26 +75,33 @@ class _ShareScreenState extends State<ShareScreen> {
                         Align(
                             alignment: Alignment.bottomCenter,
                             child: Container(
-                              width: 380,
+                              width: 370,
                               height: 20,
                               decoration: BoxDecoration(
-                                  color: const Color(0xff2F6790),
+                                  color: bgColour[bgColor],
                                   borderRadius: BorderRadius.circular(20)),
-                              child: const Row(
+                              child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(CupertinoIcons.phone_circle),
-                                      SizedBox(width: 10,),
-                                      Text("9879004689"),
+                                      Icon(CupertinoIcons.phone_circle,color: txtColour[txtColor],),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "9879004689",
+                                        style: TextStyle(color: txtColour[txtColor]),
+                                      ),
                                     ],
                                   ),
                                   Row(
                                     children: [
-                                      Icon(CupertinoIcons.mail),
-                                      SizedBox(width: 10,),
-                                      Text("aayushpatel1411@gmail.com"),
+                                      Icon(CupertinoIcons.mail,color: txtColour[txtColor],),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text("aayushpatel1411@gmail.com",style: TextStyle(color: txtColour[txtColor]),),
                                     ],
                                   ),
                                 ],

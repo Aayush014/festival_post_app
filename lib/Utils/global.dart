@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+
 List fest = [
   {
     "img": [
@@ -69,5 +73,22 @@ List fest = [
     ]
   }
 ];
+
+List bgColour = [
+  Colors.white,
+  Colors.black,
+  Colors.yellow,
+  Colors.green,
+];
+List txtColour = [
+  Colors.green,
+  Colors.yellow,
+  Colors.white,
+  Colors.black,
+
+];
+
+int bgColor = 0;
+int txtColor = 0;
 
 List posterScreen = [];

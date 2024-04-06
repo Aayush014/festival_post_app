@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../Utils/global.dart';
 import '../Home Screen/home_screen.dart';
@@ -65,7 +66,113 @@ class _PosterScreenState extends State<PosterScreen> {
           padding: const EdgeInsets.only(top: 20),
           child: Column(
             children: [
-              buildPosterBox(),
+              Stack(
+                children: [
+                  buildPosterBox(context),
+                  Positioned(
+                    left: 350,
+                    top: 10,
+                    child: GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          barrierColor: Colors.black54,
+                          enableDrag: true,
+                          showDragHandle: true,
+                          builder: (context) {
+                            return Center(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      "Text Colour",
+                                      style: TextStyle(fontSize: 20,),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        ...List.generate(
+                                            txtColour.length,
+                                                (index) => GestureDetector(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      txtColor =index ;
+                                                    });
+                                                  },
+                                                  child: Padding(
+                                                                                                padding: const EdgeInsets.all(8.0),
+                                                                                                child: Container(
+                                                  height: 60,
+                                                  width: 60,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                    BorderRadius.circular(10),
+                                                    boxShadow: const [
+                                                      BoxShadow(
+                                                          color: Colors.black26,
+                                                          blurRadius: 10,
+                                                          spreadRadius: 0.5)
+                                                    ],
+                                                    color: txtColour[index],
+                                                  ),
+                                                                                                ),
+                                                                                              ),
+                                                )),
+                                      ],
+                                    ),
+                                    const Text(
+                                      "Background Colour",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        ...List.generate(
+                                            bgColour.length,
+                                                (index) => GestureDetector(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      bgColor = index;
+                                                    });
+                                                  },
+                                                  child: Padding(
+                                                                                                padding: const EdgeInsets.all(8.0),
+                                                                                                child: Container(
+                                                  height: 60,
+                                                  width: 60,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                    BorderRadius.circular(10),
+                                                    boxShadow: const [
+                                                      BoxShadow(
+                                                          color: Colors.black26,
+                                                          blurRadius: 10,
+                                                          spreadRadius: 0.5)
+                                                    ],
+                                                    color: bgColour[index],
+                                                  ),
+                                                                                                ),
+                                                                                              ),
+                                                )),
+                                      ],
+                                    ),
+                                  ],
+                                ));
+                          },
+                        );
+                      },
+                      child: const CircleAvatar(
+                        radius: 15,
+                        backgroundColor: Colors.white,
+                        child: Icon(
+                          CupertinoIcons.add,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               const SizedBox(
                 height: 50,
               ),
