@@ -21,6 +21,7 @@ samples, guidance on mobile development, and a full API reference.
 </p>
 <p>
   <img src = "https://github.com/Aayush014/festival_post_app/assets/133498952/8135fecc-2167-4777-ba10-cd2ae962d587" width=22% height=35%>
+  <img src = "https://github.com/Aayush014/festival_post_app/assets/133498952/48fe6b88-bec7-40f7-8cbd-512559701e4a" width=22% height=35%>
   <img src = "https://github.com/Aayush014/festival_post_app/assets/133498952/8f6fd7e6-f4b6-448c-acdc-75c3d537c349" width=22% height=35%>
   <img src = "https://github.com/Aayush014/festival_post_app/assets/133498952/bebe64a9-c620-4a23-8a09-97aac8063e42" width=22% height=35%>
 </p>
